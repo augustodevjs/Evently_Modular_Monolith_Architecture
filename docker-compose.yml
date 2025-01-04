@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: src/API/Evently.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 5000:8080
       - 5001:8081
@@ -21,3 +23,12 @@ services:
       - ./.containers/db:/var/lib/postgresql/data
     ports:
       - 5432:5432
+
+  evently.seq:
+    image: datalust/seq:latest
+    container_name: Evently.Seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:5431
+      - 8081:80
