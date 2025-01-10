@@ -401,6 +401,9 @@ FodyWeavers.xsd
 .idea/**
 
 appsettings.Development.json
+modules.events.Development.json
+modules.ticketing.Development.json
+modules.users.Development.json
 
 dotCover.Output.xml
 coverage
