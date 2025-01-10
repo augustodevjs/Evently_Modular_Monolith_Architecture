@@ -5,6 +5,8 @@ using Evently.Common.Application;
 using Evently.Common.Infrastructure;
 using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Events.Infrastructure;
+using Evently.Modules.Ticketing.Infrastructure;
+using Evently.Modules.Users.Infrastructure;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +23,9 @@ builder.Configuration.AddModuleConfiguration(ModulesReference.ModuleNames);
 
 builder.Services
     .ConfigureApplicationHealthChecks(builder.Configuration)
-    .AddEventsModule(builder.Configuration);
+    .AddUsersModule(builder.Configuration)
+    .AddEventsModule(builder.Configuration)
+    .AddTicketingModule(builder.Configuration);
 
 WebApplication app = builder.Build();
 
