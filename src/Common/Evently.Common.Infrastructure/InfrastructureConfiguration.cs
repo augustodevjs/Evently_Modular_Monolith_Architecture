@@ -5,6 +5,7 @@ using Evently.Common.Application.Clock;
 using Evently.Common.Infrastructure.Caching;
 using Evently.Common.Infrastructure.Data;
 using Evently.Common.Infrastructure.Clock;
+using Evently.Common.Infrastructure.Interceptors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -25,7 +26,9 @@ public static class InfrastructureConfiguration
         
         services.TryAddSingleton(npgsqlDataSource);
 
-        services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+        services.TryAddScoped<IDbConnectionFactory, DbConnectionFactory>();
+        
+        services.TryAddSingleton<PublishDomainEventsInterceptor>();
 
         services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
 
